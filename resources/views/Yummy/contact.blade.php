@@ -38,61 +38,86 @@
                         </div>
                     </div>
                 </div><!-- End Info Item -->
-
-                <div class="col-md-6">
-                    <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
-                        <i class="icon bi bi-envelope flex-shrink-0"></i>
-                        <div>
-                            <h3>Email Us</h3>
-                            <p>info@example.com</p>
-                        </div>
-                    </div>
-                </div><!-- End Info Item -->
-
-                <div class="col-md-6">
-                    <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">
-                        <i class="icon bi bi-clock flex-shrink-0"></i>
-                        <div>
-                            <h3>Opening Hours<br></h3>
-                            <p><strong>Mon-Sat:</strong> 11AM - 23PM; <strong>Sunday:</strong> Closed</p>
-                        </div>
-                    </div>
-                </div><!-- End Info Item -->
-
-            </div>
-
-            <form action="{{ route('Postcontact') }}" method="post" data-aos="fade-up" data-aos-delay="600">
-                @csrf
-                <div class="row gy-4">
+                <div class="progress">
 
                     <div class="col-md-6">
-                        <input type="text" name="text" class="form-control" placeholder="Your Name" required="">
-                    </div>
+                        <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
+                            <i class="icon bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h3>Email Us</h3>
+                                <p>info@example.com</p>
+                            </div>
+                        </div>
+                    </div><!-- End Info Item -->
 
-                    <div class="col-md-6 ">
-                        <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                    </div>
 
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                    </div>
-
-                    <div class="col-md-12">
-                        <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                    </div>
-
-                    <div class="col-md-12 text-center">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                        <button type="submit">Send Message</button>
-                    </div>
+                    <div class="col-md-6">
+                        <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">
+                            <i class="icon bi bi-clock flex-shrink-0"></i>
+                            <div>
+                                <h3>Opening Hours<br></h3>
+                                <p><strong>Mon-Sat:</strong> 11AM - 23PM; <strong>Sunday:</strong> Closed</p>
+                            </div>
+                        </div>
+                    </div><!-- End Info Item -->
 
                 </div>
-            </form><!-- End Contact Form -->
+                <div>
 
-        </div>
+                </div>
+                <form enctype="multipart/form-data" action="{{ route('Postcontact') }}" method="post" data-aos="fade-up"
+                    data-aos-delay="600">
+                    @csrf
+                    <div class="row gy-4">
+
+
+                        <div class="col-md-6">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name">
+                            @error('name')
+                                <small class="danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email">
+                            @error('email')
+                                <small class="danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject">
+                            @error('subject')
+                                <small class="danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <input type="file" class="form-control" name="image" placeholder="image">
+                            @error('image')
+                                <small class="danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="message" rows="6" placeholder="Message"></textarea>
+                            @error('message')
+                                <small class="danger">{{ $message }}</small>
+                            @enderror
+
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                            <button type="submit">Send Message</button>
+                        </div>
+
+                    </div>
+                </form><!-- End Contact Form -->
+
+            </div>
 
     </section><!-- /Contact Section -->
 @endsection
